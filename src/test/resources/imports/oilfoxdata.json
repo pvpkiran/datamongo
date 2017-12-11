@@ -1,0 +1,38 @@
+{
+  "OilFox" : [
+    {
+      "customer": {
+        "email": "abc@def.com",
+        "firstname": "abc",
+        "lastname": "def",
+        "phoneNumber": "12345",
+        "sapId": "1111"
+      },
+      "oilfoxes": [
+        {
+          "alertMethod": "PHONE",
+          "level": 300,
+          "name": "myoilfox1",
+          "oilFoxId": "1"
+        }
+      ]
+    },
+    {
+      "customer": {
+        "email": "tuv@xyz.com",
+        "firstname": "tuv",
+        "lastname": "xyz",
+        "phoneNumber": "6789",
+        "sapId": "2222"
+      },
+      "oilfoxes": [
+        {
+          "alertMethod": "EMAIL",
+          "level": 100,
+          "name": "myfox1",
+          "oilFoxId": "11"
+        }
+      ]
+    }
+  ]
+}
