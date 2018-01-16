@@ -1,4 +1,4 @@
-package in.phani.springboot.service;
+package in.phani.springboot;
 
 import in.phani.springboot.pojo.OilfoxData;
 

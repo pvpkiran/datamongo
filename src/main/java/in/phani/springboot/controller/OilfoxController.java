@@ -1,7 +1,7 @@
 package in.phani.springboot.controller;
 
 import in.phani.springboot.pojo.OilfoxData;
-import in.phani.springboot.service.OilfoxService;
+import in.phani.springboot.OilfoxService;
 
 import io.swagger.annotations.Api;
 
