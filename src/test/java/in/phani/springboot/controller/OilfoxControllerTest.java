@@ -15,6 +15,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Matchers;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -45,8 +47,9 @@ public class OilfoxControllerTest {
     OilfoxData oilfoxData = OilfoxData.builder().oilfoxes(Lists.newArrayList(oilfox)).customer(customer).build();
     String jsonString = objectMapper.writeValueAsString(oilfoxData);
 
-    ArgumentCaptor<OilfoxData> oilfoxDataArgumentCaptor = ArgumentCaptor.forClass(OilfoxData.class);
-    doAnswer(invocation -> oilfoxDataArgumentCaptor.getValue()).when(oilfoxService).registerOilfoxData(oilfoxDataArgumentCaptor.capture());
+    /*ArgumentCaptor<OilfoxData> oilfoxDataArgumentCaptor = ArgumentCaptor.forClass(OilfoxData.class);
+    doAnswer(invocation -> oilfoxDataArgumentCaptor.getValue()).when(oilfoxService).registerOilfoxData(oilfoxDataArgumentCaptor.capture());*/
+    Mockito.when(oilfoxService.registerOilfoxData(Matchers.any(OilfoxData.class))).thenReturn(oilfoxData);
 
     mvc.perform(MockMvcRequestBuilders.post("/oilfox/register")
         .contentType(MediaType.APPLICATION_JSON)
