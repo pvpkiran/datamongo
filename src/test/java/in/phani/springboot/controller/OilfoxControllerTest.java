@@ -5,14 +5,16 @@ import in.phani.springboot.pojo.AlertMethod;
 import in.phani.springboot.pojo.Customer;
 import in.phani.springboot.pojo.Oilfox;
 import in.phani.springboot.pojo.OilfoxData;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.doAnswer;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.assertj.core.util.Lists;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -43,13 +45,15 @@ public class OilfoxControllerTest {
     OilfoxData oilfoxData = OilfoxData.builder().oilfoxes(Lists.newArrayList(oilfox)).customer(customer).build();
     String jsonString = objectMapper.writeValueAsString(oilfoxData);
 
-    when(oilfoxService.registerOilfoxData(oilfoxData)).thenReturn(oilfoxData);
+    ArgumentCaptor<OilfoxData> oilfoxDataArgumentCaptor = ArgumentCaptor.forClass(OilfoxData.class);
+    doAnswer(invocation -> oilfoxDataArgumentCaptor.getValue()).when(oilfoxService).registerOilfoxData(oilfoxDataArgumentCaptor.capture());
 
     mvc.perform(MockMvcRequestBuilders.post("/oilfox/register")
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
         .content(jsonString))
         .andExpect(status().isOk())
-        .andExpect(content().json(jsonString));
+        .andExpect(jsonPath("$.customer.email", is("abc@def.com")))
+        .andExpect(jsonPath("$.oilfoxes[0].level", is(100)));
   }
 }
