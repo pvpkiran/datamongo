@@ -1,5 +1,6 @@
-package in.phani.springboot;
+package in.phani.springboot.service;
 
+import in.phani.springboot.service.OilfoxService;
 import in.phani.springboot.pojo.Oilfox;
 import in.phani.springboot.pojo.OilfoxData;
 import in.phani.springboot.repository.OilfoxRepository;

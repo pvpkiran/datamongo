@@ -1,13 +1,11 @@
 package in.phani.springboot.service;
 
-import in.phani.springboot.OilfoxService;
-import in.phani.springboot.OilfoxServiceImpl;
+import in.phani.springboot.service.OilfoxService;
 import in.phani.springboot.pojo.AlertMethod;
 import in.phani.springboot.pojo.Customer;
 import in.phani.springboot.pojo.Oilfox;
 import in.phani.springboot.pojo.OilfoxData;
 import in.phani.springboot.repository.OilfoxRepository;
-import in.phani.springboot.service.MongoConfiguration;
 import static com.lordofthejars.nosqlunit.core.LoadStrategyEnum.CLEAN_INSERT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

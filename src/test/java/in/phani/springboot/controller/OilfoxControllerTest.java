@@ -1,6 +1,6 @@
 package in.phani.springboot.controller;
 
-import in.phani.springboot.OilfoxService;
+import in.phani.springboot.service.OilfoxService;
 import in.phani.springboot.pojo.AlertMethod;
 import in.phani.springboot.pojo.Customer;
 import in.phani.springboot.pojo.Oilfox;
