@@ -1,7 +1,9 @@
 package in.phani.springboot.service;
 
 import in.phani.springboot.pojo.OilfoxData;
+import in.phani.springboot.pojo.QueryObject;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,4 +16,6 @@ public interface OilfoxService {
   Optional<OilfoxData> findOilfoxBySapId(String sapId);
 
   int deleteOilfoxId(String oilfoxId);
+
+  Optional<List<OilfoxData>> findByDsl(QueryObject queryObject);
 }

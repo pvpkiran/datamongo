@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.querydsl.core.annotations.QueryEntity;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -24,6 +25,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@QueryEntity
 @SuppressWarnings({"checkstyle:membername"})
 public class OilfoxData {
 

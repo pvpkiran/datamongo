@@ -1,9 +1,13 @@
 package in.phani.springboot.service;
 
-import in.phani.springboot.service.OilfoxService;
 import in.phani.springboot.pojo.Oilfox;
 import in.phani.springboot.pojo.OilfoxData;
+import in.phani.springboot.pojo.QOilfoxData;
+import in.phani.springboot.pojo.QueryObject;
 import in.phani.springboot.repository.OilfoxRepository;
+
+import com.google.common.collect.Lists;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +55,19 @@ public class OilfoxServiceImpl implements OilfoxService {
       return 1;
     }
     return 0;
+  }
+
+  @Override
+  public Optional<List<OilfoxData>> findByDsl(QueryObject queryObject) {
+    //new PathBuilderFactory().create(OilfoxData.class).get(QOilfoxData.oilfoxData.oilfoxes.any().oilFoxId).eq(queryObject.getOilfoxId());
+    BooleanExpression predicate = QOilfoxData.oilfoxData.oilfoxes.any().oilFoxId.eq(queryObject.getOilfoxId());
+    if(queryObject.getCustomerEmail() != null) {
+      predicate = predicate.and(QOilfoxData.oilfoxData.customer.email.eq(queryObject.getCustomerEmail()));
+    }
+    List<OilfoxData> oilfoxData = Lists.newArrayList();
+
+    oilfoxRepository.findAll(predicate).forEach(oilfoxData::add);
+    return Optional.of(oilfoxData);
   }
 
   private OilfoxData updateRecordInDbWithNewData(final OilfoxData oilfoxData, final OilfoxData oilfoxDataFound) {

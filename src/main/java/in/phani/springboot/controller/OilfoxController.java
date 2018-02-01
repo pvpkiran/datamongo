@@ -1,6 +1,7 @@
 package in.phani.springboot.controller;
 
 import in.phani.springboot.pojo.OilfoxData;
+import in.phani.springboot.pojo.QueryObject;
 import in.phani.springboot.service.OilfoxService;
 
 import io.swagger.annotations.Api;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by panikiran on 15.11.17.
@@ -30,6 +32,7 @@ public class OilfoxController {
   private static final String REGISTER = "/register";
   private static final String FIND_BY_SAPID = "/customer/{sapId}";
   private static final String DELETE_BY_OILFOXID = "/{oilfoxId}";
+  private static final String GET_BY_DSL = "/dsl";
 
   private final OilfoxService oilfoxService;
 
@@ -53,6 +56,11 @@ public class OilfoxController {
   @DeleteMapping(DELETE_BY_OILFOXID)
   public ResponseEntity<Integer> deleteByOilFoxId(@PathVariable final String oilfoxId) {
     return ResponseEntity.ok(oilfoxService.deleteOilfoxId(oilfoxId));
+  }
+
+  @PostMapping(GET_BY_DSL)
+  public ResponseEntity<List<OilfoxData>> getByDsl(@RequestBody final QueryObject queryObject) {
+    return oilfoxService.findByDsl(queryObject).map(ResponseEntity::ok).orElseGet(this::notFound);
   }
 
   private <T> ResponseEntity<T> notFound() {
