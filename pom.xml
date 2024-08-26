@@ -19,7 +19,7 @@
         <nosqlunit.version>0.14.0</nosqlunit.version>
         <lombok.version>1.16.18</lombok.version>
         <fongo.version>2.0.6</fongo.version>
-        <springfox.version>2.7.0</springfox.version>
+        <springfox.version>2.10.0</springfox.version>
         <querydsl-apt.version>4.0.4</querydsl-apt.version>
         <querydsl-mongodb.version>4.0.0</querydsl-mongodb.version>
     </properties>
